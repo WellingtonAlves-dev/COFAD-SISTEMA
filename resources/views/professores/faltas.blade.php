@@ -44,6 +44,7 @@ Quadro de faltas
             <thead>
                 <tr>
                     <th>AULA</th>
+                    <th>PERÍODO</th>
                     @if(Auth::user()->role == 1)
                     <th>AÇÕES</th>
                     @endif    
@@ -53,6 +54,15 @@ Quadro de faltas
                 @foreach($faltas as $falta)
                     <tr>
                         <td>{{$falta->horario}}</td>
+                        <td>
+                            @if($falta->periodo == "M")
+                                MANHÃ
+                            @elseif($falta->periodo == "T")
+                                TARDE
+                            @else
+                                NOITE
+                            @endif
+                        </td>
                         @if(Auth::user()->role == 1)
                         <td>
                             <button class="btn btn-danger" id="anular_falta_btn" data-id="{{$falta->id}}">

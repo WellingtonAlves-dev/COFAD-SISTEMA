@@ -38,7 +38,7 @@ class FaltasController extends Controller
 
     public function downloadPDF($periodo_inicial, $periodo_final) {
         try {
-            $faltas = Faltas::select("nome", "matricula", "name", "data_falta", "horario")
+            $faltas = Faltas::select("nome", "matricula", "name", "data_falta", "horario", "periodo")
                     ->leftJoin("users", "users.id", "=", "faltas.id_user")
                     ->leftJoin("professores", "professores.id", "=", "faltas.id_professor")
                     ->whereBetween("data_falta",[$periodo_inicial, $periodo_final])

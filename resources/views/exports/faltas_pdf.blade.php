@@ -36,6 +36,7 @@
             <th>COORDENADOR</th>
             <th>DATA DA FALTA</th>
             <th>AULA</th>
+            <th>PERÍODO</th>
         </tr>
         @foreach($faltas as $f)
         <tr>
@@ -44,6 +45,15 @@
             <td>{{$f->name}}</td>
             <td>{{date("d/m/Y", strtotime($f->data_falta))}}</td>
             <td>{{$f->horario}}ª</td>
+            <td>
+                @if($f->periodo == "M")
+                    MANHÃ
+                @elseif($f->periodo == "T")
+                    TARDE
+                @else
+                    NOITE
+                @endif
+            </td>
         </tr>
         @endforeach
     </table>

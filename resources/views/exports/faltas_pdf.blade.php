@@ -33,7 +33,7 @@
         <tr>
             <th>PROFESSOR</th>
             <th>MATRÍCULA</th>
-            <th>COORDENADOR</th>
+            <th>REQUERENTE</th>
             <th>DATA DA FALTA</th>
             <th>AULA</th>
             <th>PERÍODO</th>

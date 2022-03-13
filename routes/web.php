@@ -50,5 +50,7 @@ Route::middleware(["auth"])->group(function() {
     Route::post("/faltas/anular", [FaltasController::class, "anular"])->middleware(["role:1"]);
     #faltas downloads
     Route::get("/faltas/excel/{periodo_inicial}/{periodo_final}", [FaltasController::class, "downloadExcel"])->middleware(["role:1"]);
-    Route::get("/faltas/pdf/{periodo_inicial}/{periodo_final}", [FaltasController::class, "downloadPDF"]);
+    Route::get("/faltas/pdf/{periodo_inicial}/{periodo_final}", [FaltasController::class, "downloadPDF"])->middleware(["role:1"]);
+    #faltas ajax
+    Route::get("/faltas/ajax/data", [FaltasController::class, "getFaltasData"])->middleware(["role:1"]);
 });

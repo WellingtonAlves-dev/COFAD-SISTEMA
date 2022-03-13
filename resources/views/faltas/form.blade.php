@@ -26,15 +26,36 @@ Registrar falta
             </div>
             <div class="form-group">
                 <label>Data da falta</label>
-                <input type="date" class="form-control" value="{{Request::get("data_falta") ?? date("Y-m-d")}}" name="data_falta">
+                <input type="date" class="form-control" id="data_falta" value="{{Request::get("data_falta") ?? date("Y-m-d")}}" name="data_falta">
             </div>
-            <div class="form-group">
-                <label>Aula da falta</label>
-                <select class="form-control" name="horario">
-                    @for($i = 0; $i < 10; $i++) 
-                        <option value="{{$i + 1}}">{{$i + 1}}º aula</option>
+            <div class="row justify-content-center w-100 mb-2 mt-2">
+                <div class="col-lg-4">
+                    <label>Manhã:</label>
+                    @for($i = 0; $i < 6; $i++)
+                        <div>
+                            <input type="checkbox" value="{{$i + 1}}" name="horarios_manha[]">
+                            <label>{{$i + 1}} ª aula</label>    
+                        </div>
                     @endfor
-                </select>
+                </div>
+                <div class="col-lg-4">
+                    <label>Tarde:</label>
+                    @for($i = 0; $i < 6; $i++)
+                        <div>
+                            <input type="checkbox" value="{{$i + 1}}" name="horarios_tarde[]">
+                            <label>{{$i + 1}} ª aula</label>    
+                        </div>
+                    @endfor
+                </div>
+                <div class="col-lg-4">
+                    <label>Noite:</label>
+                    @for($i = 0; $i < 6; $i++)
+                        <div>
+                            <input type="checkbox" value="{{$i + 1}}" name="horarios_noite[]">
+                            <label>{{$i + 1}} ª aula</label>    
+                        </div>
+                    @endfor
+                </div>
             </div>
             <button class="btn btn-primary">Registrar</button>
             <a href="
@@ -64,4 +85,66 @@ Registrar falta
         </form>
     </div>
 </div>
+@endsection
+@section("script")
+<script>
+    function desmarcarCheckBoxEAtivar() {
+        checkboxs = $("input[type='checkbox']");
+        checkboxs.prop("disabled", false);
+        checkboxs.prop("checked", false);
+
+    }
+    function pesquisarHorariosExistentes(data_falta, id_professor) {
+        $.ajax({
+            method: "GET",
+            url: "http://cofad.etecjaragua.com/faltas/ajax/data",
+            data: {data: data_falta, id_professor: id_professor},
+            success: function(horarios) {
+                for(hora of horarios["M"] ) {
+                    preencherHorariosExistentes(hora, "M");
+                }
+                for(hora of horarios["T"] ) {
+                    console.log("tarde");
+                    preencherHorariosExistentes(hora, "T");
+                }
+                for(hora of horarios["N"] ) {
+                    preencherHorariosExistentes(hora, "N");
+                }
+            },
+            error: function(err) {
+                alert("Aconteceu um erro. Entre em contato com o administrador");
+            }
+        })
+    }
+    function preencherHorariosExistentes(horario, periodo) {
+        let periodo_correto = ""
+        if(periodo == "M") {
+            periodo_correto = "horarios_manha[]";
+        } else if (periodo == "T") {
+            periodo_correto = "horarios_tarde[]";
+        } else {
+            periodo_correto = "horarios_noite[]";
+        }
+        $(`input[value='${horario}'][name='${periodo_correto}']`).prop("disabled", true);
+    }
+    
+    $(document).ready(function() {
+        let select_prof = $("select[name='id_professor']");
+        if(select_prof.val() != "") {
+            pesquisarHorariosExistentes($("#data_falta").val(), select_prof.val());
+        }
+
+        select_prof.on('change', function(evt) {
+            desmarcarCheckBoxEAtivar();
+            pesquisarHorariosExistentes($("#data_falta").val(), evt.target.value);
+        });
+
+        $("#data_falta").on("change", function(evt) {
+            desmarcarCheckBoxEAtivar();
+            pesquisarHorariosExistentes(evt.target.value,  $("select[name='id_professor']").val());
+        });
+
+    });
+
+</script>
 @endsection

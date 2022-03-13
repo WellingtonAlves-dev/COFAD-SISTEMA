@@ -90,9 +90,9 @@
                     @php
                     $hora_atual = date("h");
                     if($hora_atual <= 18 && $hora_atual >= 6) {
-                        echo "Bom dia, <br/>" . ucfirst(strtolower(Auth::user()->name)) . "!";
+                        echo "Bom dia, <br/>" . ucwords(strtolower(Auth::user()->name)) . "!";
                     } else {
-                        echo "Boa noite, <br/>" . ucfirst(strtolower(Auth::user()->name)) . "!";
+                        echo "Boa noite, <br/>" . ucwords(strtolower(Auth::user()->name)) . "!";
 
                     }
                     @endphp
@@ -182,7 +182,7 @@
                                     {{Auth::user()->name ?? ""}}
                                 </span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{asset("img/undraw_profile.svg")}}">
+                                    src="{{asset("img/user.png")}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

@@ -23,8 +23,8 @@ class FaltasExport implements FromView
         ->leftJoin("users", "users.id", "=", "faltas.id_user")
         ->leftJoin("professores", "professores.id", "=", "faltas.id_professor")
         ->whereBetween("data_falta",[$this->periodo_inicial, $this->periodo_final])
-		->orWhere("data_falta", $request->input("periodo_inicial"))
-		->orWhere("data_falta", $request->input("periodo_final"))
+		->orWhere("data_falta", $this->periodo_inicial)
+		->orWhere("data_falta", $this->periodo_final)
         ->orderBy("faltas.id", "desc");
         return view('exports.faltas', [
             "faltas" => $faltas->get()

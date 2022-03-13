@@ -9,11 +9,11 @@ Quadro de faltas
 <div class="row mt-3">
     <form method="GET" class="row w-100 shadow-sm p-3 m-1">
             <div class="col-sm-3">
-                <label>Período Inicial</label>
+                <label>Período inicial</label>
                 <input type="date" value="{{Request::get("periodo_inicial")}}" class="form-control" name="periodo_inicial">
             </div>    
             <div class="col-sm-3">
-                <label>Período Final</label>
+                <label>Período final</label>
                 <input type="date" value="{{Request::get("periodo_final")}}" class="form-control" name="periodo_final">
             </div>    
             <div class="col-sm-3 d-flex align-items-end">
@@ -38,14 +38,15 @@ Quadro de faltas
                 <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z"/>
             </svg>
         </a>
-        <table class="table table-bordered mt-3">
+        <table class="table table-bordered mt-3 text-center" style="font-size: 14px">
             <thead>
                 <tr>
                     <th>PROFESSOR</th>
                     <th>MATRÍCULA</th>
-                    <th>COORDENADOR <br/><small>Responsavel pela falta</small></th>
-                    <th>DATA FALTA <br/><small>Dia da falta</small></th>
-                    <th>AULA <br/><small>Aula da falta</small></th>
+                    <th>REQUERENTE</th>
+                    <th>DATA DA FALTA</th>
+                    <th>AULA</th>
+                    <th>PERIODO</th>
                     <th>AÇÕES</th>
                 </tr>
             </thead>
@@ -56,9 +57,18 @@ Quadro de faltas
                         <td>{{ $falta->matricula }}</td>
                         <td>{{ $falta->name }}</td>
                         <td>{{ date("d/m/Y", strtotime($falta->data_falta)) }}</td>
-                        <td>{{ $falta->horario }}</td>
+                        <td>{{ $falta->horario }}ª</td>
                         <td>
-                            <button onclick="anularFalta('{{$falta->id}}')" class="btn btn-danger" id="anular_falta_btn" data-id="{{$falta->id}}">
+                            @if($falta->periodo == "M")
+                                Manhã
+                            @elseif($falta->periodo == "T")
+                                Tarde
+                            @else
+                                NOITE
+                            @endif
+                        </td>
+                        <td>
+                            <button onclick="anularFalta('{{$falta->id}}')" class="btn btn-danger btn-sm" id="anular_falta_btn" data-id="{{$falta->id}}">
                                 Anular falta
                             </button>
                         </td>

@@ -2,10 +2,10 @@
     <thead>
         <tr>
             <th>PROFESSOR</th>
-            <th>MATRICULA</th>
-            <th>COORDENADOR</th>
+            <th>MATRÍCULA</th>
+            <th>REQUERENTE</th>
             <th>DATA DA FALTA</th>
-            <th>AULA º</th>
+            <th>AULA</th>
         </tr>
     </thead>
     <tbody>

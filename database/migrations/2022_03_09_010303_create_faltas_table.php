@@ -19,6 +19,7 @@ class CreateFaltasTable extends Migration
             $table->integer("id_user");
             $table->date("data_falta");
             $table->tinyInteger("horario");
+            $table->char("periodo", 1)->comment("M\T\N");
             $table->timestamps();
         });
     }

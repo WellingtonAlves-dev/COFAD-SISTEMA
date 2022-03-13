@@ -18,7 +18,7 @@ class FaltasController extends Controller
     {
         $faltas = null;
         if($request->input("periodo_inicial") != null && $request->input("periodo_final") != null) {
-            $faltas = Faltas::select("users.id", "nome", "matricula", "name", "data_falta", "horario", "periodo")
+            $faltas = Faltas::select("users.id", "faltas.id as faltasID","nome", "matricula", "name", "data_falta", "horario", "periodo")
                 ->leftJoin("users", "users.id", "=", "faltas.id_user")
                 ->leftJoin("professores", "professores.id", "=", "faltas.id_professor")
                 ->whereBetween("data_falta",[$request->input("periodo_inicial"), $request->input("periodo_final")])

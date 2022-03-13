@@ -68,7 +68,7 @@ Quadro de faltas
                             @endif
                         </td>
                         <td>
-                            <button onclick="anularFalta('{{$falta->id}}')" class="btn btn-danger btn-sm" id="anular_falta_btn" data-id="{{$falta->id}}">
+                            <button onclick="anularFalta('{{$falta->faltasID}}')" class="btn btn-danger btn-sm" id="anular_falta_btn" data-id="{{$falta->id}}">
                                 Anular falta
                             </button>
                         </td>

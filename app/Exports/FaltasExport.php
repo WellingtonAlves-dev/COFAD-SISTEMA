@@ -25,7 +25,7 @@ class FaltasExport implements FromView
         ->whereBetween("data_falta",[$this->periodo_inicial, $this->periodo_final])
 		->orWhere("data_falta", $this->periodo_inicial)
 		->orWhere("data_falta", $this->periodo_final)
-        ->orderBy("faltas.id", "desc");
+        ->orderBy("data_falta", "desc");
         return view('exports.faltas', [
             "faltas" => $faltas->get()
         ]);

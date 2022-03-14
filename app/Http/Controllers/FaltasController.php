@@ -24,7 +24,7 @@ class FaltasController extends Controller
                 ->whereBetween("data_falta",[$request->input("periodo_inicial"), $request->input("periodo_final")])
 				->orWhere("data_falta", $request->input("periodo_inicial"))
 				->orWhere("data_falta", $request->input("periodo_final"))
-				->orderBy("faltas.id", "desc")
+				->orderBy("data_falta", "desc")
                 ->get();
         }
         return view("faltas.index", [
@@ -44,7 +44,7 @@ class FaltasController extends Controller
                     ->whereBetween("data_falta",[$periodo_inicial, $periodo_final])
 					->orWhere("data_falta", $periodo_inicial)
 					->orWhere("data_falta", $periodo_final)
-                    ->orderBy("faltas.id", "desc")
+                    ->orderBy("data_falta", "desc")
                     ->get();
             $pdf = PDF::loadView('exports.faltas_pdf', [
                 "faltas" => $faltas,

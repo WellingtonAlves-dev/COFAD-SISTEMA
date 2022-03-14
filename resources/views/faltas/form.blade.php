@@ -97,9 +97,10 @@ Registrar falta
     function pesquisarHorariosExistentes(data_falta, id_professor) {
         $.ajax({
             method: "GET",
-            url: "http://cofad.etecjaragua.com/faltas/ajax/data",
+            url: "{{url("faltas/ajax/data")}}",
             data: {data: data_falta, id_professor: id_professor},
             success: function(horarios) {
+                console.log(horarios)
                 for(hora of horarios["M"] ) {
                     preencherHorariosExistentes(hora, "M");
                 }

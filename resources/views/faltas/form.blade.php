@@ -113,7 +113,7 @@ Registrar falta
                 }
             },
             error: function(err) {
-                alert("Aconteceu um erro. Entre em contato com o administrador");
+                alert(err.responseText);
             }
         })
     }

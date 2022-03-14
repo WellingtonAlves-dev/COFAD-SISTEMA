@@ -137,7 +137,7 @@ class FaltasController extends Controller
             return response("A data não pode esta vázia", 500);
         }
         if($id_professor == null) {
-            return response("O id do professor não pode ser vázio", 500);
+            return response("Preencha o campo professor", 500);
         }
         $faltas = Faltas::where("id_professor", $id_professor)
             ->whereDate("data_falta", $data)->get()->toArray();

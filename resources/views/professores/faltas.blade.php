@@ -56,11 +56,11 @@ Quadro de faltas
                         <td>{{$falta->horario}}</td>
                         <td>
                             @if($falta->periodo == "M")
-                                MANHÃ
+                                Manhã
                             @elseif($falta->periodo == "T")
-                                TARDE
+                                Tarde
                             @else
-                                NOITE
+                                Noite
                             @endif
                         </td>
                         @if(Auth::user()->role == 1)

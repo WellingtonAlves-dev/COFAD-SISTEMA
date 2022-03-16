@@ -64,7 +64,7 @@ Quadro de faltas
                             @elseif($falta->periodo == "T")
                                 Tarde
                             @else
-                                NOITE
+                                Noite
                             @endif
                         </td>
                         <td>

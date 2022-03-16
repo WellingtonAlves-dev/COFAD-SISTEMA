@@ -88,9 +88,11 @@
             <div class="sidebar-card d-none d-lg-flex">
                 <small class="text-center">
                     @php
-                    $hora_atual = date("h");
-                    if($hora_atual <= 18 && $hora_atual >= 6) {
+                    $hora_atual = date("H");
+                    if($hora_atual < 12 && $hora_atual > 5) {
                         echo "Bom dia, <br/>" . ucwords(strtolower(Auth::user()->name)) . "!";
+                    } else if($hora_atual >= 12 && $hora_atual < 18) {
+                        echo "Boa tarde, <br/>". ucwords(strtolower(Auth::user()->name)) . "!";
                     } else {
                         echo "Boa noite, <br/>" . ucwords(strtolower(Auth::user()->name)) . "!";
 

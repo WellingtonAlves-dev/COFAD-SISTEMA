@@ -100,7 +100,9 @@
                     @endphp
                 </small>
             </div>
-
+            <div style="position: absolute; bottom: 0">
+                <span>V0.5</span>
+            </div>
         </ul>
         <!-- End of Sidebar -->
         @endauth

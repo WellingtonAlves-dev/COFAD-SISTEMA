@@ -46,7 +46,7 @@ Quadro de faltas
                     <th>REQUERENTE</th>
                     <th>DATA DA FALTA</th>
                     <th>AULA</th>
-                    <th>PERIODO</th>
+                    <th>PERÍODO</th>
                     <th>AÇÕES</th>
                 </tr>
             </thead>

@@ -66,7 +66,7 @@ Quadro de faltas
                         @if(Auth::user()->role == 1)
                         <td>
                             <button class="btn btn-danger" id="anular_falta_btn" data-id="{{$falta->id}}">
-                                Anular Falta
+                                Anular falta
                             </button>    
                         </td>
                         @endif    

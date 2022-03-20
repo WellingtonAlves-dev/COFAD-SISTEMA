@@ -34,7 +34,7 @@ Registrar falta
                     @for($i = 0; $i < 6; $i++)
                         <div>
                             <input type="checkbox" value="{{$i + 1}}" name="horarios_manha[]">
-                            <label>{{$i + 1}} ª aula</label>    
+                            <label>{{$i + 1}}ª aula</label>    
                         </div>
                     @endfor
                 </div>
@@ -43,16 +43,16 @@ Registrar falta
                     @for($i = 0; $i < 6; $i++)
                         <div>
                             <input type="checkbox" value="{{$i + 1}}" name="horarios_tarde[]">
-                            <label>{{$i + 1}} ª aula</label>    
+                            <label>{{$i + 1}}ª aula</label>    
                         </div>
                     @endfor
                 </div>
                 <div class="col-lg-4">
                     <label>Noite:</label>
-                    @for($i = 0; $i < 6; $i++)
+                    @for($i = 0; $i < 5; $i++)
                         <div>
                             <input type="checkbox" value="{{$i + 1}}" name="horarios_noite[]">
-                            <label>{{$i + 1}} ª aula</label>    
+                            <label>{{$i + 1}}ª aula</label>    
                         </div>
                     @endfor
                 </div>

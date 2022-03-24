@@ -91,7 +91,7 @@ Quadro de faltas
           </button>
         </div>
         <div class="modal-body">
-          <p>Está ação é irreversivel. Tem certeza que deseja anular está falta???</p>
+          <p>Esta ação é irreversível. Tem certeza que deseja anular essa falta?</p>
           <form method="POST" action="{{url("/faltas/anular")}}" id="form-anular">
               @csrf
               <input type="hidden" id="id_falta_anular" name="id_falta"/>

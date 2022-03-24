@@ -16,8 +16,12 @@ class ProfessoresController extends Controller
             $professores->where("nome", "like", "%". $search."%")
                 ->orWhere("matricula", $search);
         }
+        $totalAtivo = Professores::where("ativo", true)->count();
+        $totalInativo = Professores::where("ativo", false)->count();
         return view("professores.professores", [
-            "professores" => $professores->get()
+            "professores" => $professores->paginate(5),
+            "totalAtivo" => $totalAtivo,
+            "totalInativo" => $totalInativo
         ]);
     }
 

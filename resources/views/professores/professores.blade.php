@@ -20,7 +20,11 @@ Professores
             </div>
         </form>
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-6 row d-flex justify-content-end align-items-center">
+        Total ativo: {{$totalAtivo}}
+        Total inativo: {{$totalInativo}}
+    </div>
+    <div class="col-lg-12" style="overflow: auto">
         <table class="table table-bordered mt-2">
             <thead>
                 <tr>
@@ -52,6 +56,22 @@ Professores
                 @endforeach
             </tbody>
         </table>
+        @php
+            $paginaAtual = $professores->currentPage() - 2;
+            $rangerLimit = $professores->currentPage() + 2;
+            $max = $professores->total() / $professores->perPage();
+        @endphp
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="{{$professores->previousPageUrl()}}">Anterior</a></li>
+                @foreach($professores->getUrlRange($paginaAtual, $rangerLimit) as $key => $prof)
+                    @if($key > 0 && $key <= ( $max + 1))
+                        <li class="page-item"><a class="page-link" href="{{$prof}}">{{$key}}</a></li>
+                    @endif
+                @endforeach
+              <li class="page-item"><a class="page-link" href="{{$professores->nextPageUrl()}}">Próxima</a></li>
+            </ul>
+          </nav>
     </div>
 </div>
 @endsection

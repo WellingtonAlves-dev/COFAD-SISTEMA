@@ -21,7 +21,7 @@ class ProfessoresController extends Controller
         return view("professores.professores", [
             "professores" => $professores->paginate(5),
             "totalAtivo" => $totalAtivo,
-            "totalInativo" => $totalInativo
+            "totalInativo" => $totalInativo,
         ]);
     }
 

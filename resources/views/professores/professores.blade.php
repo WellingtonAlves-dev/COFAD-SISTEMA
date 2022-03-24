@@ -63,13 +63,13 @@ Professores
         @endphp
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="{{$professores->previousPageUrl()}}">Anterior</a></li>
+              <li class="page-item {{!$professores->previousPageUrl() ? "disabled" : ""}}"><a class="page-link" href="{{$professores->previousPageUrl() . (Request::get("search") ? "&search=".Request::get("search") : "")}}">Anterior</a></li>
                 @foreach($professores->getUrlRange($paginaAtual, $rangerLimit) as $key => $prof)
                     @if($key > 0 && $key <= ( $max + 1))
-                        <li class="page-item"><a class="page-link" href="{{$prof}}">{{$key}}</a></li>
+                        <li class="page-item"><a class="page-link" href="{{$prof . (Request::get("search") ? "&search=".Request::get("search") : "")}}">{{$key}}</a></li>
                     @endif
                 @endforeach
-              <li class="page-item"><a class="page-link" href="{{$professores->nextPageUrl()}}">Próxima</a></li>
+              <li class="page-item {{!$professores->nextPageUrl() ? "disabled" : ""}}"><a class="page-link" href="{{$professores->nextPageUrl() . (Request::get("search") ? "&search=".Request::get("search") : "")}}">Próxima</a></li>
             </ul>
           </nav>
     </div>

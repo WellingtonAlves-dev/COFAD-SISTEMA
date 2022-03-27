@@ -9,5 +9,8 @@ use Illuminate\Support\Facades\Auth;
 class Faltas extends Model
 {
     use HasFactory;
-    protected $fillable = ["id", "id_professor", "id_user", "data_falta", "horario", "periodo"];
+    protected $fillable = [
+        "id", "id_professor", "id_user", "data_falta", 
+        "horario", "periodo", "observacao"
+    ];
 }

@@ -101,7 +101,7 @@
                 </small>
             </div>
             <div style="position: absolute; bottom: 0">
-                <span>V0.6.1</span>
+                <span>V0.7.2</span>
             </div>
         </ul>
         <!-- End of Sidebar -->

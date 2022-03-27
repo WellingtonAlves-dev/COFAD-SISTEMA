@@ -18,7 +18,7 @@ class FaltasController extends Controller
     {
         $faltas = null;
         if($request->input("periodo_inicial") != null && $request->input("periodo_final") != null) {
-            $faltas = Faltas::select("users.id", "faltas.id as faltasID","nome", "matricula", "name", "data_falta", "horario", "periodo")
+            $faltas = Faltas::select("users.id", "faltas.id as faltasID","nome", "matricula", "name", "data_falta", "horario", "periodo", "observacao")
                 ->leftJoin("users", "users.id", "=", "faltas.id_user")
                 ->leftJoin("professores", "professores.id", "=", "faltas.id_professor")
                 ->whereBetween("data_falta",[$request->input("periodo_inicial"), $request->input("periodo_final")])
@@ -38,7 +38,7 @@ class FaltasController extends Controller
 
     public function downloadPDF($periodo_inicial, $periodo_final) {
         try {
-            $faltas = Faltas::select("nome", "matricula", "name", "data_falta", "horario", "periodo")
+            $faltas = Faltas::select("nome", "matricula", "name", "data_falta", "horario", "periodo", "observacao")
                     ->leftJoin("users", "users.id", "=", "faltas.id_user")
                     ->leftJoin("professores", "professores.id", "=", "faltas.id_professor")
                     ->whereBetween("data_falta",[$periodo_inicial, $periodo_final])
@@ -69,6 +69,7 @@ class FaltasController extends Controller
         $data = $request->validate([
             "id_professor" => "required",
             "data_falta" => "required|date",
+            "observacao" => ""
         ]);
         //validar se pelo menos um horario foi preenchido
         $horarios_manha = is_array($request->horarios_manha) ? $request->horarios_manha : [];

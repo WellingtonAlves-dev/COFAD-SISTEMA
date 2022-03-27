@@ -37,6 +37,7 @@
             <th>DATA DA FALTA</th>
             <th>AULA</th>
             <th>PERÍODO</th>
+            <th>OBSERVAÇÃO</th>
         </tr>
         @foreach($faltas as $f)
         <tr>
@@ -53,6 +54,9 @@
                 @else
                     NOITE
                 @endif
+            </td>
+            <td>
+                {{$f->observacao}}
             </td>
         </tr>
         @endforeach

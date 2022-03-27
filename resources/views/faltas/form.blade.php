@@ -29,32 +29,51 @@ Registrar falta
                 <input type="date" class="form-control" id="data_falta" value="{{Request::get("data_falta") ?? date("Y-m-d")}}" name="data_falta">
             </div>
             <div class="row justify-content-center w-100 mb-2 mt-2">
-                <div class="col-lg-4">
-                    <label>Manhã:</label>
-                    @for($i = 0; $i < 6; $i++)
-                        <div>
-                            <input type="checkbox" value="{{$i + 1}}" name="horarios_manha[]">
-                            <label>{{$i + 1}}ª aula</label>    
-                        </div>
-                    @endfor
+                <div class="col-lg-12">
+                    <table class="table">
+                        <tr>
+                            <th>Manhã:</th>
+                            @for($i = 0; $i < 6; $i++)
+                                <td>
+                                    <input type="checkbox" value="{{$i + 1}}" name="horarios_manha[]">
+                                    <label>{{$i + 1}}ª aula</label>    
+                                </td>
+                            @endfor
+                        </tr>
+                        <tr>
+                            <th>Tarde (médio):</th>
+                            @for($i = 0; $i < 6; $i++)
+                                <td>
+                                    <input type="checkbox" value="{{$i + 1}}" name="horarios_tarde[]">
+                                    <label>{{$i + 1}}ª aula</label>    
+                                </td>
+                            @endfor
+                        </tr>
+                        <tr>
+                            <th>Tarde (tecnico):</th>
+                            @for($i = 0; $i < 6; $i++)
+                                <td>
+                                    <input type="checkbox" value="{{$i + 1}}.25" name="horarios_tarde[]">
+                                    <label>{{$i + 1}}.25ª aula</label>    
+                                </td>
+                            @endfor
+                        </tr>
+                        <tr>
+                            <th>Noite:</th>
+                            @for($i = 0; $i < 5; $i++)
+                                <td>
+                                    <input type="checkbox" value="{{$i + 1}}.25" name="horarios_noite[]">
+                                    <label>{{$i + 1}}.25ª aula</label>    
+                                </td>
+                            @endfor
+                        </tr>
+                    </table>
                 </div>
-                <div class="col-lg-4">
-                    <label>Tarde:</label>
-                    @for($i = 0; $i < 6; $i++)
-                        <div>
-                            <input type="checkbox" value="{{$i + 1}}" name="horarios_tarde[]">
-                            <label>{{$i + 1}}ª aula</label>    
-                        </div>
-                    @endfor
-                </div>
-                <div class="col-lg-4">
-                    <label>Noite:</label>
-                    @for($i = 0; $i < 5; $i++)
-                        <div>
-                            <input type="checkbox" value="{{$i + 1}}" name="horarios_noite[]">
-                            <label>{{$i + 1}}ª aula</label>    
-                        </div>
-                    @endfor
+            </div>
+            <div class="row mt-4 mb-2">
+                <div class="col-lg-12">
+                    <label>Observação</label>
+                    <textarea rows="5" style="resize: none" class="form-control" name="observacao"></textarea>    
                 </div>
             </div>
             <button class="btn btn-primary">Registrar</button>
